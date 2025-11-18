@@ -24,6 +24,12 @@ const Index = () => {
       ]
     },
     { id: 'resources', label: 'Электронные ресурсы', icon: 'Globe' },
+    { id: 'media', label: 'Медиа', icon: 'Play',
+      submenu: [
+        { id: 'podcasts', label: 'Сахалыы подкастар', icon: 'Podcast' },
+        { id: 'videos', label: 'Видеоролики', icon: 'Video' }
+      ]
+    },
     { id: 'about', label: 'О библиотеке', icon: 'Info',
       submenu: [
         { id: 'about-us', label: 'О нас', icon: 'Building' },
@@ -119,9 +125,69 @@ const Index = () => {
     { id: 1, title: 'ЛитРес: Школа', icon: 'BookOpen', description: 'Электронная библиотека', url: '#' },
     { id: 2, title: 'НЭБ', icon: 'Library', description: 'Национальная электронная библиотека', url: '#' },
     { id: 3, title: 'Президентская библиотека', icon: 'Landmark', description: 'Электронные ресурсы', url: '#' },
-    { id: 4, title: 'Подкасты', icon: 'Podcast', description: 'Аудиоконтент о литературе', url: '#' },
-    { id: 5, title: 'Видеоуроки', icon: 'Video', description: 'Образовательные ролики', url: '#' },
-    { id: 6, title: 'Онлайн-выставки', icon: 'Image', description: 'Виртуальные экспозиции', url: '#' }
+    { id: 4, title: 'Онлайн-выставки', icon: 'Image', description: 'Виртуальные экспозиции', url: '#' }
+  ];
+
+  const yakutPodcasts = [
+    {
+      id: 1,
+      title: 'Саха литературата',
+      description: 'Якутские писатели и их произведения',
+      duration: '45 мин',
+      episodes: 24,
+      image: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/ff2f68b3-575c-4404-beeb-1a1cf36d272a.jpg'
+    },
+    {
+      id: 2,
+      title: 'Төрөөбүт тылбыт',
+      description: 'О якутском языке и культуре',
+      duration: '30 мин',
+      episodes: 18,
+      image: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/6ab74b6e-e99d-4ccf-9c2e-d70191a4f0d2.jpg'
+    },
+    {
+      id: 3,
+      title: 'Айымньылар аймахтара',
+      description: 'Якутские сказки и легенды',
+      duration: '25 мин',
+      episodes: 32,
+      image: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/1668e47d-5b1b-4535-b1b8-b737feaa8677.jpg'
+    }
+  ];
+
+  const videoRoliki = [
+    {
+      id: 1,
+      title: 'Саха суруйааччыларынан',
+      description: 'Встречи с якутскими писателями',
+      views: '12К',
+      videos: 15,
+      thumbnail: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/ff2f68b3-575c-4404-beeb-1a1cf36d272a.jpg'
+    },
+    {
+      id: 2,
+      title: 'Кинигэни аах-сиир',
+      description: 'Обзоры якутских книг',
+      views: '8.5К',
+      videos: 22,
+      thumbnail: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/6ab74b6e-e99d-4ccf-9c2e-d70191a4f0d2.jpg'
+    },
+    {
+      id: 3,
+      title: 'Саха тылын үөрэтиибит',
+      description: 'Уроки якутского языка',
+      views: '25К',
+      videos: 40,
+      thumbnail: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/1668e47d-5b1b-4535-b1b8-b737feaa8677.jpg'
+    },
+    {
+      id: 4,
+      title: 'Норуот айымньыта',
+      description: 'Народное творчество Якутии',
+      views: '6.2К',
+      videos: 12,
+      thumbnail: 'https://cdn.poehali.dev/projects/c387e5ad-3156-420f-98c5-ad13ce7d28a0/files/ff2f68b3-575c-4404-beeb-1a1cf36d272a.jpg'
+    }
   ];
 
   const faqItems = [
@@ -785,6 +851,150 @@ const Index = () => {
                   <Icon name="Upload" className="mr-2" size={20} />
                   Отправить работу
                 </Button>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeSection === 'podcasts' && (
+          <div className="space-y-8 animate-fade-in">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" onClick={() => setActiveSection('home')}>
+                <Icon name="ArrowLeft" className="mr-2" size={16} />
+                Назад
+              </Button>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold">Сахалыы подкастар</h2>
+                <p className="text-muted-foreground mt-2">Якутские подкасты о литературе и культуре</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {yakutPodcasts.map((podcast) => (
+                <Card key={podcast.id} className="group hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden cursor-pointer">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={podcast.image} 
+                      alt={podcast.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <Badge className="bg-primary/90 backdrop-blur-sm mb-2">
+                        <Icon name="Podcast" className="mr-1" size={12} />
+                        {podcast.episodes} эпизодов
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors">{podcast.title}</CardTitle>
+                    <CardDescription>{podcast.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-1">
+                        <Icon name="Clock" size={14} />
+                        {podcast.duration}
+                      </div>
+                    </div>
+                    <Button className="w-full">
+                      <Icon name="Play" className="mr-2" size={16} />
+                      Слушать
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <Card className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Icon name="Headphones" size={40} />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-bold mb-2">Подпишитесь на подкасты</h3>
+                    <p className="text-white/90">Новые выпуски каждую неделю о якутской литературе и культуре</p>
+                  </div>
+                  <Button size="lg" className="bg-white text-blue-600 hover:bg-white/90">
+                    <Icon name="Bell" className="mr-2" size={20} />
+                    Подписаться
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeSection === 'videos' && (
+          <div className="space-y-8 animate-fade-in">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" onClick={() => setActiveSection('home')}>
+                <Icon name="ArrowLeft" className="mr-2" size={16} />
+                Назад
+              </Button>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold">Видеоролики</h2>
+                <p className="text-muted-foreground mt-2">Образовательные видео о якутской культуре</p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {videoRoliki.map((video) => (
+                <Card key={video.id} className="group hover:shadow-2xl transition-all hover:-translate-y-2 overflow-hidden cursor-pointer">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={video.thumbnail} 
+                      alt={video.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Icon name="Play" className="text-primary ml-1" size={28} />
+                      </div>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <Badge className="bg-black/60 backdrop-blur-sm">
+                        {video.videos} видео
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors">{video.title}</CardTitle>
+                    <CardDescription>{video.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Icon name="Eye" size={16} />
+                        {video.views} просмотров
+                      </div>
+                      <Button variant="outline">
+                        Смотреть
+                        <Icon name="ArrowRight" className="ml-2" size={16} />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <Card className="bg-gradient-to-r from-pink-500 to-red-500 text-white border-0">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Icon name="Youtube" size={40} />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-bold mb-2">Следите за новыми видео</h3>
+                    <p className="text-white/90">Регулярные выпуски о якутской литературе, языке и традициях</p>
+                  </div>
+                  <Button size="lg" className="bg-white text-pink-600 hover:bg-white/90">
+                    <Icon name="Youtube" className="mr-2" size={20} />
+                    Подписаться
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
